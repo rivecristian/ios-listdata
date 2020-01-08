@@ -4,5 +4,5 @@
 target 'ios-listdata' do
   use_frameworks!
   pod 'Alamofire'
+  pod 'Kingfisher', '~> 5.0'
 end
-

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1768A1D323C6886E00C5A485 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1768A1D223C6886E00C5A485 /* DetailViewController.swift */; };
 		17D9DB4623C658CE007A54E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9DB4523C658CE007A54E2 /* AppDelegate.swift */; };
 		17D9DB4D23C658CE007A54E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17D9DB4B23C658CE007A54E2 /* Main.storyboard */; };
 		17D9DB4F23C658D0007A54E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17D9DB4E23C658D0007A54E2 /* Assets.xcassets */; };
@@ -14,10 +15,13 @@
 		17D9DB5A23C65DA3007A54E2 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9DB5923C65DA3007A54E2 /* ListViewController.swift */; };
 		17D9DB6123C661EB007A54E2 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9DB6023C661EB007A54E2 /* ApiService.swift */; };
 		17D9DB6323C66248007A54E2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9DB6223C66248007A54E2 /* Constant.swift */; };
+		17D9DB6723C67AF9007A54E2 /* TableViewCellCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9DB6523C67AF9007A54E2 /* TableViewCellCustom.swift */; };
+		17D9DB6823C67AF9007A54E2 /* TableViewCellCustom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17D9DB6623C67AF9007A54E2 /* TableViewCellCustom.xib */; };
 		718A09E8BD8E3658D2F5B8B1 /* Pods_ios_listdata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68664CBED8EBA50F277DBC9 /* Pods_ios_listdata.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1768A1D223C6886E00C5A485 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		17D9DB4223C658CE007A54E2 /* ios-listdata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-listdata.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D9DB4523C658CE007A54E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17D9DB4C23C658CE007A54E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -27,6 +31,8 @@
 		17D9DB5923C65DA3007A54E2 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		17D9DB6023C661EB007A54E2 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		17D9DB6223C66248007A54E2 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		17D9DB6523C67AF9007A54E2 /* TableViewCellCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellCustom.swift; sourceTree = "<group>"; };
+		17D9DB6623C67AF9007A54E2 /* TableViewCellCustom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellCustom.xib; sourceTree = "<group>"; };
 		9D0C0B402DC17D6A7E3F57F5 /* Pods-ios-listdata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-listdata.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-listdata/Pods-ios-listdata.release.xcconfig"; sourceTree = "<group>"; };
 		E68664CBED8EBA50F277DBC9 /* Pods_ios_listdata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_listdata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3EAED06007B6E07968BF14D /* Pods-ios-listdata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-listdata.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-listdata/Pods-ios-listdata.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +111,7 @@
 		17D9DB5D23C65F8F007A54E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17D9DB6423C67AD3007A54E2 /* CellCustom */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				17D9DB5923C65DA3007A54E2 /* ListViewController.swift */,
+				1768A1D223C6886E00C5A485 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,6 +131,15 @@
 				17D9DB6023C661EB007A54E2 /* ApiService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		17D9DB6423C67AD3007A54E2 /* CellCustom */ = {
+			isa = PBXGroup;
+			children = (
+				17D9DB6523C67AF9007A54E2 /* TableViewCellCustom.swift */,
+				17D9DB6623C67AF9007A54E2 /* TableViewCellCustom.xib */,
+			);
+			path = CellCustom;
 			sourceTree = "<group>";
 		};
 		260D41FAA0EFCB9CA21EC276 /* Pods */ = {
@@ -196,6 +213,7 @@
 			files = (
 				17D9DB5223C658D0007A54E2 /* LaunchScreen.storyboard in Resources */,
 				17D9DB4F23C658D0007A54E2 /* Assets.xcassets in Resources */,
+				17D9DB6823C67AF9007A54E2 /* TableViewCellCustom.xib in Resources */,
 				17D9DB4D23C658CE007A54E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,10 +247,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-listdata/Pods-ios-listdata-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -246,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D9DB6723C67AF9007A54E2 /* TableViewCellCustom.swift in Sources */,
 				17D9DB5A23C65DA3007A54E2 /* ListViewController.swift in Sources */,
 				17D9DB4623C658CE007A54E2 /* AppDelegate.swift in Sources */,
+				1768A1D323C6886E00C5A485 /* DetailViewController.swift in Sources */,
 				17D9DB6123C661EB007A54E2 /* ApiService.swift in Sources */,
 				17D9DB6323C66248007A54E2 /* Constant.swift in Sources */,
 			);
