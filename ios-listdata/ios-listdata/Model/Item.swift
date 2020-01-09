@@ -8,10 +8,18 @@
 
 import Foundation
 
-struct Item: Codable {
+//struct Item: Codable {
+//
+//    let title: String?
+//    let description: String?
+//    let image : String?
+//
+//}
 
-    let title: String?
-    let description: String?
-    let image : String?
-    
+
+struct Item: Codable {
+   let title: String
+   let description: String
+   let image : String
+   
 }

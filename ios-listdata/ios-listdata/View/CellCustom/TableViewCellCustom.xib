@@ -30,7 +30,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="erF-4p-vYl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noneImage" translatesAutoresizingMaskIntoConstraints="NO" id="erF-4p-vYl">
                                 <rect key="frame" x="8" y="8" width="67" height="78"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="67" id="Fze-Hc-Or7"/>
@@ -88,4 +88,7 @@
             <point key="canvasLocation" x="155.07246376811597" y="109.82142857142857"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="noneImage" width="40" height="40"/>
+    </resources>
 </document>

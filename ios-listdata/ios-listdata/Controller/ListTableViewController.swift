@@ -7,26 +7,39 @@
 //
 
 import UIKit
+import Toast_Swift
+
 
 class ListTableViewController: UITableViewController {
 
-    var dicData:[[String:Any]] = []
+    var items = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
-        
     }
     
     // MARK: - Function Custom
-    
+
     func fetchData () {
-           ApiService.shared.fetchListItem() { (result) in
-               self.dicData = result
-               print("dicData: \(self.dicData.description)")
+        
+        ApiService.shared.fetchListItem(success: { result in
+            do {
+                self.items = try JSONDecoder().decode(Array<Item>.self, from: result)
+                print("items: \(self.items)")
                 self.tableView.reloadData()
-           }
-       }
+            }
+            catch let error as NSError{
+                print("Error -> : \(error)")
+                self.view.makeToast("Problemas con los datos", duration: 3.0, position: .center)
+                
+            }
+        })
+        { (error) in
+            print("Error -> : \(error)")
+           self.view.makeToast("Conexión Fállida", duration: 3.0, position: .center)
+        }
+    }
     
     // MARK: - Action
     
@@ -35,53 +48,45 @@ class ListTableViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
     }
     
-  
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return dicData.count
+        return items.count
     }
-
-   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let array = Array(dicData)
-        let current = array[indexPath.row]
-        let title = current["title"] as? String ?? ""
-        let description = current["description"] as? String ?? ""
-               
-        print("title: \(title)")
-        print("description: \(description)")
-       
-       
-        let cell = Bundle.main.loadNibNamed("TableViewCellCustom", owner: self, options: nil)?.first as! TableViewCellCustom
-        cell.titleLbl.text = title
-        cell.descriptionLbl.text = description
-       
-       if let url = URL(string: current["image"] as! String) {
-
-       cell.photoImg.kf.setImage(with: url, placeholder: UIImage(named: "noneImage"), options: nil, completionHandler: {
-                           (image, error, cacheType, imageUrl) in
-               if let imageData = image?.pngData() {
-                   let bytes = imageData.count
-                   if  bytes < 0 {
-                       cell.photoImg.image = UIImage(named: "noneImage")
-                   }
-                   }else{
-                       cell.photoImg.image = UIImage(named: "noneImage")
-                   }
-               })
+       let item = items[indexPath.row]
+       let cell = Bundle.main.loadNibNamed("TableViewCellCustom", owner: self, options: nil)?.first as! TableViewCellCustom
+        if let title = item.title as? String {
+            cell.titleLbl.text = title
+       }
+        if let description = item.description as? String {
+            cell.descriptionLbl.text = description
+       }
+       //Cargar imagen
+       cell.photoImg.kf.indicatorType = .activity
+       cell.photoImg.image = UIImage(named: "noneImage")
+       cell.photoImg.kf.indicatorType = .activity
+        
+       DispatchQueue.main.async {
+            if let url = URL(string: item.image) {
+                 cell.photoImg.kf.setImage(with: url) { result in
+                    switch result {
+                    case .success(let value):
+                        print("Image: \(value.image). Got from: \(value.cacheType)")
+                    case .failure(let error):
+                        print("Error: \(error)")
+                        cell.photoImg.image = UIImage(named: "noneImage")
+                    }
+                }
+            }
        }
        return cell
-
     }
-       
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -91,7 +96,20 @@ class ListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "segueDetail", sender: nil)
+        let itemSelected = items[indexPath.row]
+        //Paso el item seleccionado a la vista de detalle
+        performSegue(withIdentifier: "segueDetail", sender: itemSelected)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is DetailViewController
+        {
+            if let itemSelected = sender as? Item {
+                let detailVC = segue.destination as! DetailViewController
+                detailVC.itemSelected = itemSelected
+            }
+        }
     }
 
 }

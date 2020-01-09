@@ -7,18 +7,46 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var descriptionLbl: UILabel!
+    @IBOutlet weak var photoImg: UIImageView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
+    var scrollView: UIScrollView!
+    var itemSelected:Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let description = itemSelected?.description {
+           self.descriptionTextView.text = description
+        }
+        
+        if let url = itemSelected?.image {
+            loadPhoto(urlImage: url)
+         }
     }
-
+    
+    func loadPhoto (urlImage:String) {
+        
+        photoImg.kf.indicatorType = .activity
+        photoImg.image = UIImage(named: "noneImage")
+        photoImg.kf.indicatorType = .activity
+         
+        if let url = URL(string: urlImage) {
+            photoImg.kf.setImage(with: url) { result in
+                 switch result {
+                 case .success(let value):
+                     print("Image: \(value.image). Got from: \(value.cacheType)")
+                 case .failure(let error):
+                     print("Error: \(error)")
+                     self.photoImg.image = UIImage(named: "noneImage")
+                 }
+             }
+        }
+        
+    }
 
 }

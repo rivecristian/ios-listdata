@@ -13,7 +13,6 @@ class TableViewCellCustom: UITableViewCell {
     @IBOutlet weak var photoImg: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +20,5 @@ class TableViewCellCustom: UITableViewCell {
   
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }
