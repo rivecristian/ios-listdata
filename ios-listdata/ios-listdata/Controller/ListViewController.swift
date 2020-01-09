@@ -16,13 +16,11 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        fetchData()
     }
     
-    func getData () {
-        
-        let apiService = ApiService()
-        apiService.getListData() { (result) in
+    func fetchData () {
+        ApiService.shared.fetchListItem() { (result) in
             self.dicData = result
             print("dicData: \(self.dicData.description)")
             self.tableView.reloadData()

@@ -10,12 +10,14 @@ import Foundation
 import Alamofire
 
 class ApiService {
-    let manager = Alamofire.SessionManager.default
+    static let shared = ApiService()
+    static let manager = Alamofire.SessionManager.default
     
-    func getListData(completion: @escaping([[String: Any]]) -> Void) {
+    
+    func fetchListItem(completion: @escaping([[String: Any]]) -> Void) {
         let routeList = Constant.Server.baseUrl + Constant.Route.routeList
         print ("url: \(routeList)")
-        manager.request(routeList).responseJSON { response in
+        ApiService.manager.request(routeList).responseJSON { response in
             print("response: \(response.result)")
             switch (response.result) {
                 case .success:
@@ -34,4 +36,5 @@ class ApiService {
             
         }
     }
+ 
 }
